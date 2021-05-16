@@ -64,23 +64,25 @@ function transitionend(e) {
 function filterTodo(e) {
   const todos = todoList.childNodes;
 
-  for (let i=1; i <=todos.length;i++){
-    switch (e.target.value){
-      case "all":
-        todos[i].style.display = "flex";
+  todos.forEach(todo => {
+    switch (e.target.value) {
+      case 'all':
+        todo.style.display = 'flex';
         break;
-      case "completed":
-        if (todos[i].classList.contains("completed")) {
-          todos[i].style.display = "flex";
+      case 'completed':
+        if (todo.classList.contains('completed')) {
+          todo.style.display = 'flex';
         } else {
-          todos[i].style.display = "none";
+          todo.style.display = 'none';
         }
-      case "uncompleted":
-        if (!todos[i].classList.contains("completed")) {
-          todos[i].style.display = "flex";
+        break;
+      case 'uncompleted':
+        if (!todo.classList.contains('completed')) {
+          todo.style.display = 'flex';
         } else {
-          todos[i].style.display = "none";
+          todo.style.display = 'none';
         }
+        break;
     }
-  }
+  });
 }
