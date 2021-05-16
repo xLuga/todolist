@@ -64,22 +64,28 @@ function transitionend(e) {
 function filterTodo(e) {
   const todos = todoList.childNodes;
 
-  for (let i=1; i <=todos.length;i++){
+  for (let i=0; i <=todos.length;i++){
+    const todo = todos[i];
+    if (!todo) {
+      // Element existiert nicht (null oder undefined) also machen wir einfach weiter
+      continue;
+    }
+
     switch (e.target.value){
       case "all":
-        todos[i].style.display = "flex";
+        todo.style.display = "flex";
         break;
       case "completed":
-        if (todos[i].classList.contains("completed")) {
-          todos[i].style.display = "flex";
+        if (todo.classList.contains("completed")) {
+          todo.style.display = "flex";
         } else {
-          todos[i].style.display = "none";
+          todo.style.display = "none";
         }
       case "uncompleted":
-        if (!todos[i].classList.contains("completed")) {
-          todos[i].style.display = "flex";
+        if (!todo.classList.contains("completed")) {
+          todo.style.display = "flex";
         } else {
-          todos[i].style.display = "none";
+          todo.style.display = "none";
         }
     }
   }
